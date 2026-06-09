@@ -29,5 +29,29 @@ public static void showMenu(){
       if(messageIDs.get(i).equals(id)) return "Found:" + storedMessages.get(i);
     }
     return "Message ID not found.";
+  }
+  public static void loadStoredMessages(){
+    try(BufferedReader reader = new BufferedReader(new FileReader("messages.json"))) {
+      String line;
+      while((line = reader.readLine() != null) {
+        JSONObject obj = new JSONOject(line);
+        storedMessages.add(obj.getString("Message"));
+        messageHashes.add(obj.getString("Hash"));
+        messageIDS.add(obj.getString("ID"));
+        recipientList.add(obj.getString("Recipient"));
+      }
+    }catch(IOException e) {
+      System.out.println("No stored messages found.");
+    }
+  }
+  public static String displayReport(){
+    StringBuilder report = new StringBuilder("===MESSAGE REPORT===\n);
+    for(int i= 0; i< storedMessages.size();i++){
+      report.append("---\nHash:").append(messageHashes.get(i))
+        .append("\nID:").append(messageIDs.get(i))
+        .append("\nRecipient:").append(recipientList.get(i))
+        .append("\nMessage:).append(storedMessage.get(i)).append("\n");
+    }
+    return report.toString();
 }
   
