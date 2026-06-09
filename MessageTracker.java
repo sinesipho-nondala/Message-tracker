@@ -17,6 +17,17 @@ public static void showMenu(){
   System.out.println("3)Quit");
   System.out.println("4)Stored Messages");
 }
-    
+ public static String displayLongestMessage(){
+   if(storedMessages.isEmpty()) return "No messages stroed";
+   String longest = storeMessages.get(0);
+   for(String msgn: storedMessages){
+     if (msg.length()>longest.length()) longest = msg;}
+   return longest;
+ }
+  public static String searchByMessageID(String id) {
+    for (int i = 0; i<messageIDs.size(); i++){
+      if(messageIDs.get(i).equals(id)) return "Found:" + storedMessages.get(i);
+    }
+    return "Message ID not found.";
 }
   
